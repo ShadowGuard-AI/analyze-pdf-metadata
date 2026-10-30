@@ -47,16 +47,15 @@ def setup_argparse():
 def extract_metadata(pdf_path):
     """Extracts metadata from a PDF file."""
     try:
-        with open(pdf_path, "rb"):
-            reader = PdfReader(pdf_path)
-            metadata = reader.metadata
-            if metadata:
-                return dict(metadata)
-            else:
-                logging.warning(
-                    "No metadata found in PDF file: %s", pdf_path
-                )
-                return {}  # Return empty dictionary to avoid errors
+        reader = PdfReader(pdf_path)
+        metadata = reader.metadata
+        if metadata:
+            return dict(metadata)
+        else:
+            logging.warning(
+                "No metadata found in PDF file: %s", pdf_path
+            )
+            return {}  # Return empty dictionary to avoid errors
     except FileNotFoundError:
         logging.error("File not found: %s", pdf_path)
         raise  # Re-raise for handling in main()
@@ -69,31 +68,33 @@ def analyze_metadata(metadata, check_modified=False):
     """Analyzes the extracted metadata for suspicious entries."""
     analysis_results = {}
 
-    # Check for common suspicious metadata keys
-    suspicious_keys = [
-        "xmp:CreatorTool",
-        "pdf:Producer",
-        "dc:creator",
-        "author",
-        "creator",
-        "producer",
-        "title",
-    ]
+    # pypdf returns the document info keys in their raw form, with a
+    # leading slash and capitalised names: /Author, /Creator, /ModDate.
+    # The checks below used to look for plain lower case names instead, so
+    # they never matched anything and every PDF came back clean. Normalise
+    # once, up front, and let every check work on the same spelling.
+    normalized = {
+        str(key).lstrip("/").lower(): value for key, value in metadata.items()
+    }
+
+    # Keys are the normalised spellings; the xmp and dc names an earlier
+    # version listed here do not occur in the dict pypdf returns.
+    suspicious_keys = ["author", "creator", "producer", "title", "creatortool"]
 
     for key in suspicious_keys:
-        if key in metadata:
-            analysis_results[f"Suspicious Key: {key}"] = metadata[key]
+        if key in normalized:
+            analysis_results[f"Suspicious Key: {key}"] = normalized[key]
 
     # Check for unusual modification dates
     if check_modified:
-        if "/ModDate" in metadata:  # using raw key as the metadata is dynamic.
-            analysis_results["Modification Date"] = metadata["/ModDate"]  # using raw key
+        if "moddate" in normalized:
+            analysis_results["Modification Date"] = normalized["moddate"]
         else:
             logging.warning("Modification date not found in metadata.")
 
     # Perform basic checks for inconsistencies
-    if "author" in metadata and "creator" in metadata:
-        if metadata["author"] != metadata["creator"]:
+    if "author" in normalized and "creator" in normalized:
+        if normalized["author"] != normalized["creator"]:
             analysis_results["Author/Creator Mismatch"] = "Possible inconsistency detected."
 
     if not analysis_results:
@@ -146,16 +147,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# Example Usage:
-# 1. Analyze a PDF file:
-#    python main.py suspicious.pdf
-#
-# 2. Analyze a PDF file and save the output to a CSV:
-#    python main.py suspicious.pdf -o output.csv
-#
-# 3. Analyze a PDF with verbose logging:
-#    python main.py suspicious.pdf -v
-#
-# 4. Analyze PDF file, output CSV and check if the file has been modified
-#    python main.py suspicious.pdf -o output.csv --check-modified
