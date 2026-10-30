@@ -1,3 +1,5 @@
+![Banner](banner.png)
+
 # analyze-pdf-metadata
 Extracts and analyzes metadata from PDF files, flagging suspicious or unusual entries, revealing hidden document properties, creator information, and potential modification history that might indicate malicious intent or tampering. - Focused on Data analysis and reporting
 
