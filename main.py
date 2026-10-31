@@ -104,13 +104,15 @@ def analyze_metadata(metadata, check_modified=False):
 
 
 def save_to_csv(data, output_path):
-    """Saves the analysis results to a CSV file."""
+    """Saves the analysis results to a CSV file. Returns True on success, False on failure."""
     try:
         df = pd.DataFrame.from_dict(data, orient="index", columns=["Value"])
         df.to_csv(output_path)
         logging.info("Analysis results saved to: %s", output_path)
+        return True
     except Exception as e:
         logging.error("Error saving to CSV: %s - %s", output_path, e)
+        return False
 
 
 def main():
@@ -134,7 +136,9 @@ def main():
                 print(f"{key}: {value}")
 
             if args.output:
-                save_to_csv(analysis_results, args.output)
+                if not save_to_csv(analysis_results, args.output):
+                    print(f"Error: Could not write output CSV: {args.output}")
+                    sys.exit(1)
         else:
             print("No suspicious metadata found.")
 
