@@ -79,6 +79,10 @@ def analyze_metadata(metadata, check_modified=False):
 
     # Keys are the normalised spellings; the xmp and dc names an earlier
     # version listed here do not occur in the dict pypdf returns.
+    # Suspicious here means only present. Nearly every real PDF carries
+    # an author, a creator, and a title, so nearly every real PDF gets
+    # flagged rows. The list is a starting point for a human to look,
+    # not a finding, and the label overstates it.
     suspicious_keys = ["author", "creator", "producer", "title", "creatortool"]
 
     for key in suspicious_keys:
@@ -86,6 +90,11 @@ def analyze_metadata(metadata, check_modified=False):
             analysis_results[f"Suspicious Key: {key}"] = normalized[key]
 
     # Check for unusual modification dates
+    # Nothing here parses or compares the date. The check reports that
+    # a modification date exists; it never sets it against the creation
+    # date, which is the comparison that could actually suggest a file
+    # was altered after it was made. Read the flag as date recorded,
+    # not as tampering assessed, whatever the help text promises.
     if check_modified:
         if "moddate" in normalized:
             analysis_results["Modification Date"] = normalized["moddate"]
@@ -135,6 +144,9 @@ def main():
             for key, value in analysis_results.items():
                 print(f"{key}: {value}")
 
+            # The CSV write only happens inside this branch, so a PDF
+            # with no flagged keys produces no file even when an output
+            # path was given. Absence of the file is the clean result.
             if args.output:
                 if not save_to_csv(analysis_results, args.output):
                     print(f"Error: Could not write output CSV: {args.output}")
