@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="Night wharf in three layers: the hull rising and falling far back, a lantern swaying beside the shed door and carrying its light across the still padlock in the middle, wharf rats crossing a lantern pool edge near">
+<rect x="0" y="0" width="1200" height="300" fill="#06161c"/>
+<rect x="0" y="70" width="1200" height="110" fill="#0a343a"/>
+<g><animateTransform attributeName="transform" type="translate" values="0,0; 0,-6; 0,0" dur="11s" repeatCount="indefinite"/>
+<polygon points="720,128 1120,128 1076,168 756,168" fill="#121414"/>
+<line x1="724" y1="140" x2="1112" y2="140" stroke="#e8eee6" stroke-width="4"/>
+<line x1="930" y1="128" x2="930" y2="52" stroke="#28261f" stroke-width="4"/>
+<polygon points="952,62 969,65 967,86 954,83" fill="#be463c"/><polygon points="982,70 999,73 997,94 984,91" fill="#e8c85a"/><polygon points="1012,78 1027,81 1025,100 1014,97" fill="#5a82b4"/>
+</g>
+<g fill="#fac85a"><circle cx="830" cy="86" r="3"/><circle cx="1010" cy="80" r="3"/><circle cx="1120" cy="90" r="3"/></g>
+<polygon points="0,180 1200,168 1200,300 0,300" fill="#181614"/>
+<g fill="none" stroke="#3a3630" stroke-width="2"><rect x="30" y="226" width="170" height="36" rx="8"/><rect x="230" y="222" width="170" height="36" rx="8"/><rect x="430" y="230" width="170" height="36" rx="8"/><rect x="640" y="224" width="170" height="36" rx="8"/><rect x="850" y="228" width="170" height="36" rx="8"/></g>
+<polygon points="60,110 330,96 330,232 60,232" fill="#1e1a16"/>
+<polygon points="46,114 344,114 306,72 84,72" fill="#141210"/>
+<rect x="112" y="128" width="166" height="104" fill="#261f18"/>
+<g stroke="#171310" stroke-width="3"><line x1="136" y1="134" x2="136" y2="226"/><line x1="162" y1="134" x2="162" y2="226"/><line x1="188" y1="134" x2="188" y2="226"/><line x1="214" y1="134" x2="214" y2="226"/><line x1="240" y1="134" x2="240" y2="226"/></g>
+<g fill="none" stroke="#96968e" stroke-width="3"><ellipse cx="126" cy="182" rx="8" ry="6"/><ellipse cx="146" cy="186" rx="8" ry="6"/><ellipse cx="166" cy="182" rx="8" ry="6"/><ellipse cx="186" cy="186" rx="8" ry="6"/><ellipse cx="206" cy="182" rx="8" ry="6"/><ellipse cx="226" cy="186" rx="8" ry="6"/><ellipse cx="246" cy="182" rx="8" ry="6"/></g>
+<g><rect x="176" y="186" width="40" height="46" rx="6" fill="#0c0b0a"/><path d="M180,222 L204,190 L216,190 L192,232 L180,232 Z" fill="#e8a43c"/><circle cx="196" cy="208" r="4" fill="#000"/></g>
+<g><animateTransform attributeName="transform" type="rotate" values="-7 356 108; 7 356 108; -7 356 108" dur="9s" repeatCount="indefinite"/>
+<line x1="330" y1="104" x2="356" y2="104" stroke="#3a3630" stroke-width="4"/>
+<rect x="346" y="104" width="20" height="30" fill="#1e1a16" stroke="#e8a43c" stroke-width="2"/>
+<circle cx="356" cy="118" r="4" fill="#ffdc82"/>
+<ellipse cx="356" cy="176" rx="86" ry="52" fill="#fac85a" opacity="0.13"/>
+</g>
+<g fill="#181410"><rect x="356" y="196" width="56" height="36" fill="#34281c"/><rect x="366" y="158" width="10" height="42" fill="#e2dcc8"/><rect x="366" y="176" width="10" height="7" fill="#0a343a"/><rect x="384" y="164" width="10" height="36" fill="#e2dcc8"/><rect x="384" y="180" width="10" height="7" fill="#0a343a"/></g>
+<g fill="#141008"><g transform="translate(470,180)"><rect x="0" y="0" width="62" height="80" rx="9"/><path d="M4,18 L58,18 M4,40 L58,40 M4,62 L58,62" stroke="#a8966e" stroke-width="3"/></g><g transform="translate(560,186)"><rect x="0" y="0" width="62" height="80" rx="9"/><path d="M4,18 L58,18 M4,40 L58,40 M4,62 L58,62" stroke="#a8966e" stroke-width="3"/></g><g transform="translate(650,180)"><rect x="0" y="0" width="62" height="80" rx="9"/><path d="M4,18 L58,18 M4,40 L58,40 M4,62 L58,62" stroke="#a8966e" stroke-width="3"/></g></g>
+<g fill="#0a0908">
+<g><ellipse rx="17" ry="6"/><path d="M14,0 L30,-3 L14,3" /><circle cx="-18" cy="-3" r="3.4"><animate attributeName="fill" values="#0a0908;#0a0908" dur="1s" repeatCount="indefinite"/></circle><animateTransform attributeName="transform" type="translate" values="240,262; 470,258" dur="2.6s" begin="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="2.6s" begin="4s" repeatCount="indefinite"/></g>
+<g><ellipse rx="14" ry="5"/><path d="M11,0 L25,-2 L11,2"/><animateTransform attributeName="transform" type="translate" values="430,272; 210,268" dur="2.2s" begin="17s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="2.2s" begin="17s" repeatCount="indefinite"/></g>
+</g>
+</svg>
