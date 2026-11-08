@@ -3,85 +3,72 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>analyze-pdf-metadata: Wharf Rat and Customs Men</title>
-<meta name="description" content="analyze-pdf-metadata extracts and analyzes metadata from PDF files, flagging suspicious or unusual entries. Focused on data analysis and reporting.">
+<title>analyze-pdf-metadata: The Maker's Mark</title>
 <style>
-@font-face{font-family:'Azeret Mono';src:url('fonts/AzeretMono.ttf') format('truetype');}
-@font-face{font-family:'Barlow';src:url('fonts/Barlow.ttf') format('truetype');}
-:root{--tar:#0d0c0b;--teal:#0a343a;--amber:#e8a43c;--foam:#e8eee6}
-*{box-sizing:border-box}body{margin:0;background:var(--tar);color:var(--foam);font-family:'Barlow',sans-serif;line-height:1.65}
-h1,h2{font-family:'Azeret Mono',monospace}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end}
-.hero img.heroimg{width:100%;height:62vh;object-fit:cover;display:block}
-.hero .in{padding:1rem 6vw 2rem;max-width:1080px;margin:0 auto;width:100%}
-.logo{width:170px}
-main{padding:0 6vw 3rem;max-width:1080px;margin:0 auto}
-nav{display:flex;gap:.8rem;flex-wrap:wrap;margin:1rem 0}
-.lockbtn{display:inline-block;text-decoration:none;color:var(--foam);font-family:'Azeret Mono',monospace;padding:1.05rem 1.3rem .8rem;background:#141210;border:2px solid #4a443c;border-radius:8px;position:relative;transition:transform .12s}
-.lockbtn:before{content:'';position:absolute;left:50%;top:-13px;width:34px;height:20px;margin-left:-17px;border:6px solid #cfd4cf;border-bottom:none;border-radius:20px 20px 0 0;transition:transform .15s}
-.lockbtn:after{content:'';position:absolute;right:7px;bottom:6px;width:26px;height:9px;background:linear-gradient(115deg,transparent 30%,var(--amber) 30%,var(--amber) 70%,transparent 70%)}
-.lockbtn:hover:before{transform:translateY(-3px)}
-.lockbtn:hover{border-color:var(--amber)}
-.lockbtn:active{transform:translateY(3px)}
-.lockbtn:focus-visible{outline:3px dashed var(--amber);outline-offset:4px}
-.crate{background:var(--teal);border:5px solid #141210;padding:0;margin:1.8rem 0;box-shadow:inset 0 0 0 2px #2c3436}
-.crate h2{background:var(--amber);color:var(--tar);margin:0;padding:.55rem 1.3rem;font-size:1.25rem}
-.crate .body{padding:.4rem 1.5rem 1.3rem}
-pre{background:#07181b;color:var(--foam);padding:1rem;overflow-x:auto}
-a{color:var(--amber)}a:before{content:'';display:inline-block;width:11px;height:16px;margin-right:.45em;vertical-align:-3px;background:linear-gradient(to bottom,#e8eee6 0 62%,var(--teal) 62% 78%,#e8eee6 78%);border-radius:5px 5px 2px 2px;transition:transform .2s}
-a:hover:before{transform:rotate(-9deg)}
-.lockbtn:before,.lockbtn:after,nav a:before{content:''}
-nav a:before{display:block;left:50%}
-.chain{height:16px;margin:2.2rem 0;background-image:radial-gradient(ellipse 10px 7px at 11px 8px,transparent 4px,#96968e 5px,transparent 6.5px);background-size:22px 16px;background-repeat:repeat-x}
-.chain.short{width:120px;margin:2.2rem auto;background-repeat:no-repeat;background-size:22px 16px}
-.hook{display:flex;gap:1rem;padding:.55rem 0;border-bottom:1px solid rgba(232,164,60,.35)}
-.hook b{font-family:'Azeret Mono',monospace;color:var(--amber);min-width:170px}
-footer{padding:1rem 6vw 2.4rem;max-width:1080px;margin:0 auto}
+@font-face { font-family: 'Brygada 1918'; src: url('fonts/Brygada1918-400.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'Brygada 1918'; src: url('fonts/Brygada1918-700.woff2') format('woff2'); font-weight: 700; }
+@font-face { font-family: 'Fira Sans'; src: url('fonts/FiraSans-400.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'Fira Sans'; src: url('fonts/FiraSans-700.woff2') format('woff2'); font-weight: 700; }
+:root { --stone: #6f6a61; --kiln: #b56545; --cream: #f4eee1; --cobalt: #2b4c9b; --ink: #2c2822; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Fira Sans', sans-serif; background: var(--cream); color: var(--ink); line-height: 1.6; }
+header.top { display: flex; justify-content: space-between; align-items: center; padding: 18px 28px; border-bottom: 3px solid var(--cobalt); background: #e9e0cb; }
+.wordmark { font-family: 'Brygada 1918', serif; font-weight: 700; letter-spacing: .03em; }
+.beacon { color: var(--cobalt); font-weight: 700; font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; }
+.hero { text-align: center; padding: 52px 22px 10px; }
+.hero img.logo { width: 168px; height: auto; border: 4px solid var(--stone); border-radius: 6px; }
+h1, h2 { font-family: 'Brygada 1918', serif; }
+h1 { font-size: 2.6rem; margin: 20px 0 8px; font-weight: 700; }
+.tag { color: #57534a; max-width: 44rem; margin: 0 auto; }
+.buttons { margin: 24px 0 8px; }
+.buttons a { display: inline-block; margin: 4px; padding: 11px 22px; background: var(--kiln); color: var(--cream); font-weight: 700; text-decoration: none; border-radius: 4px; }
+.buttons a.alt { background: transparent; color: var(--cobalt); border: 2px solid var(--cobalt); }
+figure.wide { max-width: 1020px; margin: 26px auto; padding: 0 18px; }
+figure.wide img { width: 100%; height: auto; display: block; border: 1px solid var(--stone); }
+figcaption { color: #7a7466; font-size: .9rem; padding-top: 8px; text-align: center; }
+.strip { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; padding: 22px 18px; }
+.strip div { background: #e9e0cb; border-top: 3px solid var(--kiln); padding: 14px 18px; min-width: 180px; text-align: center; }
+.strip b { display: block; font-family: 'Brygada 1918', serif; color: var(--cobalt); font-size: 1.15rem; }
+main { max-width: 880px; margin: 0 auto; padding: 10px 22px 30px; }
+h2 { color: var(--ink); border-bottom: 2px solid var(--stone); padding-bottom: 6px; margin-top: 38px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid var(--stone); padding: 8px 12px; text-align: left; vertical-align: top; }
+th { background: #e9e0cb; }
+code { background: #e3dac4; padding: 1px 6px; border-radius: 3px; }
+.hold { border-left: 5px solid var(--cobalt); background: #ece4cf; padding: 14px 18px; }
+footer { text-align: center; padding: 26px 18px 34px; color: #7a7466; font-size: .9rem; border-top: 3px solid var(--cobalt); margin-top: 30px; }
 </style>
 </head>
 <body>
-<header class="hero">
-<img class="heroimg" src="assets/intro-banner.png" alt="A night wharf with a chained customs shed, tarred barrels, and a moored hull, no text">
-<div class="in">
-<img class="logo" src="assets/logo.png" alt="Customs padlock with a white shackle and one amber diagonal inspection stripe">
-<h1>analyze-pdf-metadata</h1>
-<p>The customs shed's own inspection bench. Walk it from the sealed end to the open ledger, in the order an officer works a suspect parcel.</p>
-<nav>
-<a class="lockbtn" href="#opened">What gets opened</a>
-<a class="lockbtn" href="#alongside">Coming alongside</a>
-<a class="lockbtn" href="#tools">Tools on the bench</a>
-<a class="lockbtn" href="#ledger">The last page</a>
-</nav>
+<header class="top"><span class="wordmark">analyze-pdf-metadata</span><span class="beacon">Turn it to the light</span></header>
+<section class="hero">
+<img class="logo" src="assets/logo.png" alt="Stoneware vessel lying on its side on a wooden studio bench, its unglazed base ring facing the camera with one small impressed oak leaf mark in the clay">
+<h1>The Maker's Mark</h1>
+<p class="tag">Extracts and analyzes metadata from PDF files, reading the marks a document carries out of sight, the way a potter's mark sits on the base of a vessel where only someone who turns it over will find it.</p>
+<p class="buttons"><a href="https://github.com/ShadowGuard-AI/analyze-pdf-metadata">View on GitHub</a> <a class="alt" href="https://github.com/ShadowGuard-AI/analyze-pdf-metadata#readme">Read the README</a></p>
+</section>
+<figure class="wide"><img src="assets/intro-banner.png" alt="Hands close up turning a stoneware vessel so its base ring catches the light, the impressed leaf mark plain in the clay and the cobalt banded jug standing at the right"><figcaption>Hands turning the vessel until the base ring catches the light.</figcaption></figure>
+<div class="strip">
+<div><b>PDF files</b>the vessels on the bench</div>
+<div><b>Hidden properties</b>read off the underside</div>
+<div><b>2</b>requirements</div>
+<div><b>2</b>parameters left undescribed</div>
 </div>
-</header>
 <main>
-<section class="crate" id="opened"><h2>What Gets Opened</h2><div class="body">
-<p>Bench one, what gets opened: analyze-pdf-metadata extracts and analyzes metadata from PDF files, flagging suspicious or unusual entries.</p>
-<p>The inspection turns up, in the source's own terms: hidden document properties, creator information, and potential modification history that might indicate malicious intent or tampering. Its stated focus, data analysis and reporting, sits at the end of this panel as the bench's purpose tag.</p>
-<p>Nothing about editing, repairing, or cleaning a PDF is claimed here, because the source describes an extractor and a flagger, not a workshop.</p>
-</div></section>
-<div class="chain"></div>
-<section class="crate" id="alongside"><h2>Coming Alongside</h2><div class="body">
-<p>Installation is the single clone line as the source prints it, shown exactly in that spelling, with the wrong account name left visible on the page:</p>
-<pre>git clone https://github.com/ShadowStrikeHQ/analyze-pdf-metadata
-./analyze-pdf-metadata [params]</pre>
-<p>This bench notes in its own text, not in small print, that the source gives no example PDF, no sample metadata listing, and no picture of what a flagged entry looks like, so a visitor learns the shape of the inspection but not yet its handwriting.</p>
-</div></section>
-<div class="chain"></div>
-<section class="crate" id="tools"><h2>Tools on the Bench</h2><div class="body">
-<p>Bench three, the four tools on the bench, each on its own hook:</p>
-<div class="hook"><b>-h</b><span>Shows the help message and exits.</span></div>
-<div class="hook"><b>--verbose</b><span>Enables verbose logging, the one working description among the optional flags.</span></div>
-<div class="hook"><b>--output</b><span>Hung Without a Tag: no description provided, written beside it in plain type. This page invents no output format for it.</span></div>
-<div class="hook"><b>--check-modified</b><span>Hung Without a Tag: no description provided. A reader can guess from the name only as far as a name honestly goes, toward checking modification, and no further. No test detail is invented for it.</span></div>
-</div></section>
-<div class="chain short"></div>
-<section class="crate" id="ledger"><h2>The Last Page of the Ledger</h2><div class="body">
-<p>Bench four, kept short because the source is short: outcomes and licence. On outcomes this page says only what can be supported, that entries get flagged as suspicious or unusual, with no severity scale, no report layout, and no exit behaviour described anywhere in the source.</p>
-<p>On licence it prints Copyright (c) ShadowStrikeHQ exactly as recorded, and states beside it that no licence is named in the source, rather than letting a bare copyright line pose as permission terms. The clone line above names the same wrong account. Both are preserved as written and flagged here in the open. That is the whole bench. A thin tool, honestly measured.</p>
-<p><a href="https://github.com/ShadowGuard-AI/analyze-pdf-metadata">The repository on GitHub</a></p>
-</div></section>
+<h2>What it reads</h2>
+<p>The tool extracts and analyzes metadata from PDF files, flagging suspicious or unusual entries, revealing hidden document properties, creator information, and potential modification history that might indicate malicious intent or tampering. Usage, as the README gives it: <code>./analyze-pdf-metadata [params]</code>. Its requirements are <code>pandas&gt;=2.1.0</code> and <code>pypdf&gt;=3.10.0</code>.</p>
+<figure class="wide" style="padding:0;margin:18px 0;"><img src="assets/banner.png" alt="Pottery studio bench with a row of stoneware vessels standing in order, one vessel at the centre tipped to show its base and impressed leaf mark, shelves of further vessels behind and one cobalt banded jug standing apart at the right edge"></figure>
+<h2>Parameters</h2>
+<table>
+<tr><th>Parameter</th><th>What the README says</th></tr>
+<tr><td><code>-h</code></td><td>Show help message and exit</td></tr>
+<tr><td><code>--output</code></td><td>No description provided</td></tr>
+<tr><td><code>--verbose</code></td><td>Enable verbose logging.</td></tr>
+<tr><td><code>--check-modified</code></td><td>No description provided</td></tr>
+</table>
+<h2>Stated limits</h2>
+<div class="hold"><p><code>--output</code> and <code>--check-modified</code> both arrive with no description in the source. Their hooks stay labelled and empty here, with no output format and no checking method invented to fill the silence. The licence line at the close of the README is a copyright line only, with no licence named.</p></div>
 </main>
-<footer><p>Theme: wharf rat and customs men. Type: Azeret Mono for headings, Barlow for reading, both SIL Open Font License 1.1. The lettering reference Space Game was reference only and is not embedded.</p></footer>
+<footer>analyze-pdf-metadata, read from the underside. Fonts: Brygada 1918 and Fira Sans, self-hosted under the SIL Open Font License.</footer>
 </body>
 </html>

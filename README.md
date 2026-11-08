@@ -1,10 +1,10 @@
-![Night wharf with a chained customs shed, tarred barrels, rolled charts, and a moored hull, no text](intro-banner.png)
+![Hands close up turning a stoneware vessel so its base ring catches the light, the impressed leaf mark plain in the clay and the cobalt banded jug standing at the right](intro-banner.png)
 
 # analyze-pdf-metadata
 
-![Wharf at night with the name chalked across the customs shed door and the padlock catching lantern light](banner.png)
+![Pottery studio bench with a row of stoneware vessels standing in order, one vessel at the centre tipped to show its base and impressed leaf mark, shelves of further vessels behind and one cobalt banded jug standing apart at the right edge](banner.png)
 
-![Customs shed padlock with its amber inspection stripe crossing the seam, the heading plate](logo.png)
+![Stoneware vessel lying on its side on a wooden studio bench, its unglazed base ring facing the camera with one small impressed oak leaf mark in the clay](logo.png)
 
 ![Night wharf scene: a lantern sways beside the shed door and carries its light across the still padlock while the hull rises and falls behind](scene.svg)
 
