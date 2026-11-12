@@ -9,8 +9,7 @@
 ![Night wharf scene: a lantern sways beside the shed door and carries its light across the still padlock while the hull rises and falls behind](scene.svg)
 
 
-# analyze-pdf-metadata
-Extracts and analyzes metadata from PDF files, flagging suspicious or unusual entries, revealing hidden document properties, creator information, and potential modification history that might indicate malicious intent or tampering. - Focused on Data analysis and reporting
+Extracts and analyzes metadata from PDF files, flagging suspicious or unusual entries, revealing hidden document properties, creator information, and potential modification history that might indicate malicious intent or tampering, focusing on data analysis and reporting.
 
 ## Install
 `git clone https://github.com/ShadowStrikeHQ/analyze-pdf-metadata`
